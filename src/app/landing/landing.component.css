@@ -234,23 +234,38 @@ body {
   padding: auto;
 }
 
-article {
-  max-width: 100%;
-  height: 100%;
+#about-us-opening-line {
+  max-width: 50%;
+  max-height: 5rem;
+  padding-top: 2%;
+  padding-bottom: 10%;
+  padding-left: 25%;
+  margin: auto;
+  text-align: left;
+}
+
+#about-us-closing-line {
+  max-width: 50%;
+  max-height: 5rem;
+  padding-top: 2%;
+  padding-bottom: 10%;
+  padding-left: 25%;
   margin: auto;
   text-align: start;
-  text-align-last: right;
-  display: flex;
-  alight-items: center;
-  justify-content: center;
+  text-align-last: end;
+  align-items: center;
 }
 
 h2 {
   font-family: Raleway, sans-serif;
-  padding: 1rem;
-  margin: 0.1rem;
   max-width: 50%;
-  max-height: 50%;
+  max-height: 5rem;
+  padding-top: 2%;
+  padding-bottom: 10%;
+  padding-left: 25%;
+  margin: auto;
+  text-align: start;
+  align-items: center;
 }
 
 h4 {
@@ -262,7 +277,6 @@ h4 {
   text-align: start;
   text-align-last: right;
   display: flex;
-  alight-items: center;
   justify-content: center;
 }
 
@@ -288,7 +302,7 @@ i {
 
 table {
   font-family: Lora, sans-serif;
-  padding: 1rem;
+  padding-top: 10%;
   max-width: 100%;
   height: 100%;
   margin: auto;
@@ -314,3 +328,52 @@ tr:hover {
   color: #fff;
   background-color: #0af;
 }
+
+#hero-image-carousel {
+  max-width: 100%;
+  height: 33.3rem;
+  display: flex;
+  padding: 1rem;
+  padding-bottom: 10rem;
+  margin: auto;
+  text-align: start;
+  text-align-last: right;
+  display: flex;
+  justify-content: center;
+}
+
+#hero-image-middle {
+  padding: 1rem;
+  height: 35rem;
+}
+
+#staff-profiles {
+  max-width: 100%;
+  height: 100%;
+  margin: auto;
+  padding-top: 10%;
+  text-align: center;
+  text-align-last: right;
+  display: flex;
+  justify-content: center;
+}
+
+.staff-profiles-carousel {
+  transition: 1s ease;
+}
+
+#button-circle, #button-circle:active {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #0af;
+  border: dashed white 1px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#stephen-hill-card {
+}
+
+#kiyoko-tsu-card {}

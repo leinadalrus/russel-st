@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title></title>
+  <title>Russel St. Medical</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="/src/assets/css/style.css" rel="stylesheet" />
@@ -31,10 +31,20 @@
 
 <body>
   <main>
-    <h2><b>About Us</b></h2>
-    <article>
-      <p>Russel Street Medical opened in 2020, and is located in Melbourne's CBD at: 427 Swanston Street Melbourne 3000 - just opposite of RMIT University Building 10 - and within walking distance of Melbourne Central Station.</p>
+    <section id="hero-image-carousel">
+      <img src="https://images.unsplash.com/photo-1688590361364-2d153dac2a15?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIwNTl8&ixlib=rb-4.0.3&q=85" />
 
+      <img src="https://images.unsplash.com/photo-1689275851672-32a8c8d8588e?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIyMTh8&ixlib=rb-4.0.3&q=85" id="hero-image-middle" />
+
+      <img src="https://images.unsplash.com/photo-1689500216081-e12c2580e0df?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIyNzZ8&ixlib=rb-4.0.3&q=85" />
+    </section>
+
+    <h2><b>About Us</b></h2>
+    <article id="about-us-opening-line">
+      <p>Russel Street Medical opened in 2020, and is located in Melbourne's CBD at: 427 Swanston Street Melbourne 3000 - just opposite of RMIT University Building 10 - and within walking distance of Melbourne Central Station.</p>
+    </article>
+
+    <article id="about-us-closing-line">
       <p>We strive to help all of our patients with a focus on preventative healthcare, a view to managinc chronic health conditions with a holistic approach, and with access to a wide range of specialist care providers when needed.</p>
 
       <i>RMIT students and staff receive discounts through our partnership programs.</i>
@@ -62,19 +72,30 @@
       </tr>
     </table>
 
-    <article>
+    <div id="page-image-underlay"></div>
 
-      <h2><b>Who We Are</b></h2>
-      <h4>Dr. Stephen Hill</h4>
-      <i></i>
+    <section id="staff-profiles">
+    </section>
+    <h2><b>Who We Are</b></h2>
 
-      <h4>Ms. Kiyoko Tsu</h4>
-      <i></i>
-    </article>
+    <div class="staff-profiles-carousel">
+      <article id="stephen-hill-card">
+        <img src="/src/assets/images/a-man-wearing-a-stethoscope-on-his-neck-6234600.jpg" />
+        <h4>Dr. Stephen Hill</h4>
+        <i></i>
+      </article>
+
+      <article id="kiyoko-tsu-card">
+        <img src="/src/assets/images/female-medical-practitioner-wearing-laboratory-coat-8442283.jpg" />
+        <h4>Ms. Kiyoko Tsu</h4>
+        <i></i>
+      </article>
+
+      <button id="button-circle" onclick="quickSwitchIntoCard(1)"></button>
+      <button id="button-circle" onclick="quickSwitchIntoCard(2)"></button>
+    </div>
 
   </main>
-
-  <section id="page-image-underlay"></section>
 </body>
 
 </html>
