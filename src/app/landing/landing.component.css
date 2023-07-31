@@ -104,34 +104,33 @@
 }
 
 #manila-folder-tab-shape:hover {
-  background-color: #FF00FF;
+  background-color: #ff00ff;
   border-top-left-radius: 1rem;
 }
 
 #manila-folder-tab-home:hover {
-  background-color: #FF00FF;
+  background-color: #ff00ff;
   border-top-left-radius: 1rem;
 }
 
 #manila-folder-tab-about:hover {
-  background-color: #FF00FF;
+  background-color: #ff00ff;
   border-top-left-radius: 1rem;
 }
 
 #manila-folder-tab-profiles:hover {
-  background-color: #FF00FF;
+  background-color: #ff00ff;
   border-top-left-radius: 1rem;
 }
 
 #manila-folder-tab-services:hover {
-  background-color: #FF00FF;
+  background-color: #ff00ff;
   border-top-left-radius: 1rem;
 }
 
 #manila-folder-tab-shape:active {
   background-color: #1b1b1b;
 }
-
 
 #manila-folder-tab-home:active {
   background-color: #1b1b1b;
@@ -160,19 +159,19 @@
 }
 
 #business-logo:hover {
-  background-color: #FF00FF;
+  background-color: #ff00ff;
   border-top-left-radius: 1rem;
 }
 
 #business-logo-underlay {
   background-color: #eeeeee;
-background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300aaff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300aaff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
   width: 22%;
   height: 9.6%;
   padding: 0.3rem;
   margin: 0.1rem;
   position: absolute;
-  display: inline
+  display: inline;
 }
 
 .hero-banner {
@@ -188,6 +187,16 @@ background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0
   display: inline;
 }
 
+#page-image-underlay {
+  background-color: #fefefe;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300aaff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+a {
+  font-family: Roboto, sans-serif;
+}
 
 a:link {
   color: #fff;
@@ -218,4 +227,90 @@ a:active {
   color: #ffd400;
   text-align: center;
   text-align-last: right;
+}
+
+body {
+  margin: auto;
+  padding: auto;
+}
+
+article {
+  max-width: 100%;
+  height: 100%;
+  margin: auto;
+  text-align: start;
+  text-align-last: right;
+  display: flex;
+  alight-items: center;
+  justify-content: center;
+}
+
+h2 {
+  font-family: Raleway, sans-serif;
+  padding: 1rem;
+  margin: 0.1rem;
+  max-width: 50%;
+  max-height: 50%;
+}
+
+h4 {
+  font-family: Raleway, sans-serif;
+  padding: 1rem;
+  max-width: 100%;
+  height: 100%;
+  margin: auto;
+  text-align: start;
+  text-align-last: right;
+  display: flex;
+  alight-items: center;
+  justify-content: center;
+}
+
+p {
+  font-family: Lora, sans-serif;
+  text-align: center;
+  text-align-last: right;
+  padding: 1rem;
+  margin: 0.1rem;
+  max-width: 50%;
+  max-height: 50%;
+}
+
+i {
+  font-family: Lora, sans-serif;
+  text-align: center;
+  text-align-last: right;
+  padding: 1rem;
+  margin: 0.1rem;
+  max-width: 50%;
+  max-height: 50%;
+}
+
+table {
+  font-family: Lora, sans-serif;
+  padding: 1rem;
+  max-width: 100%;
+  height: 100%;
+  margin: auto;
+  text-align: start;
+  text-align-last: right;
+  display: flex;
+  alight-items: center;
+  justify-content: center;
+}
+
+th,
+td {
+  border-bottom: 0.1rem dashed #0af;
+  text-align: center;
+  text-align-last: right;
+  padding: 1rem;
+  margin: 0.1rem;
+  max-width: 50%;
+  max-height: 50%;
+}
+
+tr:hover {
+  color: #fff;
+  background-color: #0af;
 }
