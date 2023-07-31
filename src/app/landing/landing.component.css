@@ -1,0 +1,193 @@
+.window-tabs {
+  float: none;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.window-tabs button {
+  float: left;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  padding: 0.15rem;
+  margine: 0.06rem;
+  background-color: inherit;
+  transition: 1s;
+}
+
+.window-tabs button:hover {
+  color: #0af;
+  background-color: #ff1493;
+  border-top-left-radius: 1rem;
+}
+
+.window-tabs button:active {
+  background-color: #696969;
+}
+
+#manila-folder-tab-shape {
+  width: 4rem;
+  height: 2%;
+  padding: 0.3rem;
+  padding-bottom: 1%;
+  margin: 0.1rem;
+  position: relative;
+  background-color: #0af;
+  color: #ffd400;
+  text-align: center;
+  text-align-last: right;
+  border-top-left-radius: 0.1rem;
+}
+
+#manila-folder-tab-home {
+  width: 4rem;
+  height: 2%;
+  padding: 0.3rem;
+  padding-bottom: 1.15%;
+  margin: 0.1rem;
+  position: relative;
+  background-color: #0af;
+  color: #ffd400;
+  text-align: center;
+  border-top-left-radius: 0.1rem;
+}
+
+#manila-folder-tab-about {
+  width: 4rem;
+  height: 2%;
+  padding: 0.3rem;
+  padding-bottom: 0.5%;
+  margin: 0.1rem;
+  position: relative;
+  background-color: #0af;
+  color: #ffd400;
+  text-align: center;
+  text-align-last: right;
+}
+
+#manila-folder-tab-profiles {
+  width: 4rem;
+  height: 2%;
+  padding: 0.3rem;
+  padding-bottom: 1%;
+  margin: 0.1rem;
+  position: relative;
+  background-color: #0af;
+  color: #ffd400;
+  text-align: center;
+  text-align-last: right;
+}
+
+#manila-folder-tab-services {
+  width: 4rem;
+  height: 2%;
+  padding: 0.3rem;
+  padding-bottom: 1.15%;
+  margin: 0.1rem;
+  position: relative;
+  background-color: #0af;
+  color: #ffd400;
+  text-align: center;
+  text-align-last: right;
+}
+
+#manila-folder-tab-shape:after {
+  top: 1.25rem;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  background: #1b1b1b;
+  transform: skew(0deg, 6deg);
+  content: image("/src/assets/images/logo.png");
+}
+
+#manila-folder-tab-shape:hover {
+  background-color: #ff00ff;
+  border-top-left-radius: 1rem;
+}
+
+#manila-folder-tab-home:hover {
+  background-color: #ff00ff;
+  border-top-left-radius: 1rem;
+}
+
+#manila-folder-tab-shape:active {
+  background-color: #1b1b1b;
+}
+
+#manila-folder-tab-home:active {
+  background-color: #1b1b1b;
+}
+
+#business-logo {
+  width: 2%;
+  height: 2%;
+  padding: 0.3rem;
+  margin: 0.1rem;
+  position: relative;
+  text-align: center;
+  text-align-last: right;
+}
+
+#business-logo:hover {
+  background-color: #ff00ff;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+#business-logo-underlay {
+  background-color: #eeeeee;
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300aaff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  width: 22%;
+  height: 9.6%;
+  padding: 0.3rem;
+  margin: 0.1rem;
+  position: absolute;
+  display: inline;
+}
+
+.hero-banner {
+  background-color: #eeeeee;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%2300aaff' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E");
+  width: 99rem;
+  height: 9.6%;
+  max-width: 100%;
+  max-height: 9.6%;
+  padding: 0.3rem;
+  margin: 0.1rem;
+  position: absolute;
+  display: inline;
+}
+
+a:link {
+  color: #fff;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #8b008b;
+}
+
+a:hover {
+  color: #ffd400;
+}
+
+a:active {
+  color: #f8f8ff;
+  text-decoration: none;
+}
+
+.ad-banner {
+  width: 4rem;
+  height: 2%;
+  padding: 0.3rem;
+  padding-bottom: 1.15%;
+  margin: 0.1rem;
+  position: relative;
+  background-color: #0af;
+  color: #ffd400;
+  text-align: center;
+  text-align-last: right;
+}
