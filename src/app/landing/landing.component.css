@@ -104,12 +104,27 @@
 }
 
 #manila-folder-tab-shape:hover {
-  background-color: #ff00ff;
+  background-color: #FF00FF;
   border-top-left-radius: 1rem;
 }
 
 #manila-folder-tab-home:hover {
-  background-color: #ff00ff;
+  background-color: #FF00FF;
+  border-top-left-radius: 1rem;
+}
+
+#manila-folder-tab-about:hover {
+  background-color: #FF00FF;
+  border-top-left-radius: 1rem;
+}
+
+#manila-folder-tab-profiles:hover {
+  background-color: #FF00FF;
+  border-top-left-radius: 1rem;
+}
+
+#manila-folder-tab-services:hover {
+  background-color: #FF00FF;
   border-top-left-radius: 1rem;
 }
 
@@ -117,7 +132,20 @@
   background-color: #1b1b1b;
 }
 
+
 #manila-folder-tab-home:active {
+  background-color: #1b1b1b;
+}
+
+#manila-folder-tab-about:active {
+  background-color: #1b1b1b;
+}
+
+#manila-folder-tab-profiles:active {
+  background-color: #1b1b1b;
+}
+
+#manila-folder-tab-services:active {
   background-color: #1b1b1b;
 }
 
@@ -132,19 +160,19 @@
 }
 
 #business-logo:hover {
-  background-color: #ff00ff;
+  background-color: #FF00FF;
   border-top-left-radius: 1rem;
 }
 
 #business-logo-underlay {
   background-color: #eeeeee;
-  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300aaff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300aaff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
   width: 22%;
   height: 9.6%;
   padding: 0.3rem;
   margin: 0.1rem;
   position: absolute;
-  display: inline;
+  display: inline
 }
 
 .hero-banner {
@@ -159,6 +187,7 @@
   position: absolute;
   display: inline;
 }
+
 
 a:link {
   color: #fff;
