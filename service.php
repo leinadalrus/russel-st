@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-include_once './tools.php';
+include_once "./tools.php";
 
-include_once './header.php';
+include_once "./header.php";
 ?>
 
 <section class="service-section">
-  <form class="custom-form-container" method="post" action="<?= $RootDirectory . '/misc/'; ?>action.php" onsubmit="processFormData()">
+  <form class="custom-form-container" method="post" action="<?= $RootDirectory . "/misc/"; ?>action.php" onsubmit="processFormData()">
     <input id="patient-id-field" type="text" name="patient-id-field" value="Patient ID" onchange="validatePatientID()" required />
 
     <br />
@@ -83,5 +83,5 @@ include_once './header.php';
 </section>
 
 <?php
-include_once './footer.php';
+include_once "./footer.php";
 ?>

@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types=1);
+include_once "./header.php";
 
-require_once './tools.php';
-
-include_once './header.php';
+if (!isset($_POST["password"])) {
+  require_once "./administration.php";
+}
 ?>
 
 <link href="https://fonts.googleapis.com/css?family=Karla:400" rel="stylesheet" type="text/css">
@@ -14,9 +14,9 @@ include_once './header.php';
     <div class="title" title="Laragon">Laragon</div>
 
     <div class="info"><br />
-      <?php print($_SERVER['SERVER_SOFTWARE']); ?><br />
+      <?php print($_SERVER["SERVER_SOFTWARE"]); ?><br />
       PHP version: <?php print phpversion(); ?> <span><a title="phpinfo()" href="/?q=info">info</a></span><br />
-      Document Root: <?php print($_SERVER['DOCUMENT_ROOT']); ?><br />
+      Document Root: <?php print($_SERVER["DOCUMENT_ROOT"]); ?><br />
 
     </div>
   </div>
@@ -41,7 +41,7 @@ include_once './header.php';
     <p>
       Russel Street Medical opened in 2020,
       <br />
-      and is located in Melbourne's CBD at:
+      and is located in Melbourne"s CBD at:
       <br />
     <section id="about-us-details">
       <i>
@@ -127,7 +127,7 @@ include_once './header.php';
       <tr>
         <td>
 
-          Over his training and practice, Stephen worked in internal medicine at the Royal Children's Hospital
+          Over his training and practice, Stephen worked in internal medicine at the Royal Children"s Hospital
           Melbourne before transitioning to General Practice.
 
         </td>
@@ -160,5 +160,5 @@ include_once './header.php';
 </div>
 
 <?php
-include_once './footer.php';
+include_once "./footer.php";
 ?>
