@@ -1,27 +1,47 @@
-# RusselSt
+# Russel Street Medical
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+## Workspace - using Laragon for Testing
 
-## Development server
+### Table - Appointments Scheduler/Manager
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+###### _Example:_
 
-## Code scaffolding
+```PHP
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<form method="post" action="misc/action.php" class="form">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <?php
+                $APPOINTER = new Appointment();
 
-## Build
+                foreach ($APPOINTER->FetchAppointmentData("etc/appointments.txt") as $key => $value) {
+                    for ($i = 0; $i < sizeof($APPOINTER->FetchAppointmentData($RootDirectory)); $i++) {
+                ?>
+                        <th scope="col">
+                            <?= htmlspecialchars($key); ?>
+                        </th>
+            </tr>
+            <input type="text" name="user" class="form-control">
+        </thead>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+        <tr>
+            <th scope="row"></th>
+            <td> <?= htmlspecialchars($value); ?> </td>
+            <input type="datetime-local" name="date" class="form-control">
+        </tr>
+<?php
+                    }
+                }
 
-## Running unit tests
+                foreach ($CurrentUsers as $user) {
+                    printf("%s", validate_login_credentials());
+                }
+?>
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    </table>
 
-## Running end-to-end tests
+    <button type="submit" onclick="<?php $APPOINTER->UpdateAppointmentData("etc/appointments.txt") ?>">Add Administrator</button>
+</form>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```

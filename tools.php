@@ -62,6 +62,7 @@ function validate_login_credentials(): string
 function validate_remote_usage(): bool
 {
     $fileReadRemoteUser = fopen("etc/users.txt", "r");
+    flock($fileReadRemoteUser, LOCK_EX);
 
     if (!$fileReadRemoteUser) {
         logout_session();
@@ -72,14 +73,15 @@ function validate_remote_usage(): bool
         return preg_match(verify_username_regex(), $readLineHandle);
     }
 
+    flock($fileReadRemoteUser, LOCK_UN);
     fclose($fileReadRemoteUser);
 }
 
-function blowfish_hash_password()
+function blowfish_hash_password(): bool
 {
     // $CurrentUser = hash_hmac("sha256", $FieldedEmail, $__S3729065_SECRET_FILE__);
     $hashedPassword = password_hash($_POST["password"], CRYPT_BLOWFISH, ["cost" => 12]);
-    $verifiedPassword = password_verify($_POST["password"], $hashedPassword);
+    return password_verify($_POST["password"], $hashedPassword);
     // Attributions:
     // How can I store my users’ passwords safely?, https://stackoverflow.com/a/1581919.
 }
@@ -129,7 +131,8 @@ session_start();
 $__S3729065_SECRET_FILE__ = hash_file("sha256", "etc/secret.txt");
 
 // Temporary Cookies
-$TemporaryCookie = array(0 => array("DS372", "John Doe", date(DATE_W3C)));
+// $TemporaryCookie = array(0 => array("DS372", "John Doe", date(DATE_W3C)));
+$TemporaryCookies = array(0 => array("Stephen", date(DATE_W3C)));
 
 // foreach ($TemporaryCookie as $key => $value) {
 //     // Consider `explode()` to set one cookie into multiple arrays

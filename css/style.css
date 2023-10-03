@@ -155,7 +155,7 @@ Set a css property to screen width using css (no date). Available at: https://st
   position: absolute;
   background: #fff;
   transform: skew(0deg, 0deg);
-  content: "Russel St.";
+  content: 'Russel St.';
   opacity: 33%;
   color: #dc143c;
 }
@@ -169,7 +169,7 @@ Set a css property to screen width using css (no date). Available at: https://st
   background: #fff;
   border-top-right-radius: 0.1rem;
   transform: skew(0deg, 0deg);
-  content: "About Us";
+  content: 'About Us';
   color: #0af;
 }
 
@@ -182,7 +182,7 @@ Set a css property to screen width using css (no date). Available at: https://st
   background: #fff;
   border-top-right-radius: 0.1rem;
   transform: skew(0deg, 0deg);
-  content: "Who We Are";
+  content: 'Who We Are';
   color: #0af;
 }
 
@@ -195,7 +195,7 @@ Set a css property to screen width using css (no date). Available at: https://st
   background: #fff;
   border-top-right-radius: 0.1rem;
   transform: skew(0deg, 0deg);
-  content: "Service Area";
+  content: 'Service Area';
   color: #0af;
 }
 
@@ -544,6 +544,25 @@ tr:hover {
 
 #breakline-separator {
   padding: 2rem;
+}
+
+.portrait-image-carousel {
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.slick-prev,
+.slick-next,
+.slick-arrow button {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 2rem;
+  padding: 0.1rem;
+  background-color: #0af;
+  border: dashed white 1rem;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 br {

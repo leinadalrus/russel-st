@@ -3,25 +3,24 @@
 final class AccessAttempt
 {
 
-    private $accessAttempts = array(0 => array(0));
-
-    public function UpdateAccessAttempts(string $filepath)
+    public function UpdateAccessAttempts(string $filepath): void
     {
-        $filepath = $_SERVER['DOCUMENT_ROOT'] . '/etc/' . 'accessattempts.txt';
+        $filepath = 'etc/accessattempts.txt';
         $username = verify_username_regex();
+        $accessAttempts = array();
 
-        $email = $_GET['email'] || $_POST['email'];
+        $email = $_GET['email'];
         $accessAttempted = array($username => array(0, $email, date(DATE_W3C)),);
 
-        foreach ($this->accessAttempts as $attempt) {
-            $this->accessAttempts[$attempt] = $accessAttempted;
+        foreach ($accessAttempts as $attempt) {
+            $accessAttempts[$attempt] = $accessAttempted;
         }
 
         fputcsv($filepath, $accessAttempted);
     }
 
-    public function RetrieveAccessAttempts()
+    public function RetrieveAccessAttempts(string $filepath): array | false
     {
-        return $this->accessAttempts;
+        return fgetcsv($filepath);
     }
 }

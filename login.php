@@ -1,11 +1,13 @@
-<section class="login-section">
-  <form method="get" action="misc/action.php" class="custom-form-container" onsubmit="processFormData()">
-    <input type="email" id="email-field-style" name="email" onchange="validateEmailID()" />
-    <input type="password" id="password-field-style" name="password" />
+<aside>
+  <section class="login-section">
+    <form method="get" action="misc/action.php" class="custom-form-container" onsubmit="processFormData()">
+      <input type="email" id="email-field-style" name="email" onchange="validateEmailID()" />
+      <input type="password" id="password-field-style" name="password" />
 
-    <button type="submit" id="login-button-style" name="signage" formnovalidate>Sign In</button>
-  </form>
-</section>
+      <button type="submit" id="login-button-style" name="signage" formnovalidate>Sign In</button>
+    </form>
+  </section>
+</aside>
 
 <style>
   .login-section {
@@ -16,7 +18,7 @@
     position: relative;
     display: grid;
 
-    padding: 0.3rem;
+    padding: 1rem;
     margin-right: 33%;
     margin-left: 42%;
     margin-top: 20%;
