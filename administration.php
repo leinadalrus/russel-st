@@ -1,73 +1,77 @@
-<?php include_once "./appointments.php"; ?>
+<?php
+include_once "./appointments.php"; 
 
-<table class="table table-dark table-striped table-bordered border-primary">
-    <thead>
-        <tr>
-            <?php
-            $APPOINTER = new Appointment();
 
-            foreach ($APPOINTER->FetchAppointmentData("etc/appointments.txt") as $key => $value) {
-                for ($i = 0; $i < sizeof($APPOINTER->FetchAppointmentData($RootDirectory)); $i++) {
-            ?>
+?>
+
+<section>
+    <table class="table table-dark table-striped table-bordered border-primary">
+        <thead>
+            <tr>
+                <?php
+                foreach (fetch_appointments("etc/appointments.txt") as $key => $value) {
+                ?>
                     <th scope="col">
                         <?= htmlspecialchars($key); ?>
                     </th>
+            </tr>
+        </thead>
+
+        <tr>
+            <th scope="row"></th>
+            <td> <?= htmlspecialchars($value); ?> </td>
         </tr>
-    </thead>
 
-    <tr>
-        <th scope="row"></th>
-        <td> <?= htmlspecialchars($value); ?> </td>
-    </tr>
-    
-<?php
+    <?php
                 }
-            }
 
-            foreach ($CurrentUsers as $user) {
-                printf("%s", validate_login_credentials());
-            }
-?>
+                foreach ($CurrentUsers as $user) {
+                    printf("%s", validate_login_credentials());
+                }
+    ?>
 
-</table>
+    </table>
+</section>
 
-<form action="misc/action.php" method="post">
-    <form class="row gx-3 gy-2 align-items-center">
-        <div class="col-md-4">
-            <label for="validationServer01" class="form-label">Last name</label>
-            <input type="text" class="form-control is-valid" id="validationServer01" value="" required>
-            <div class="valid-feedback">
-                Looks good!
+<section>
+    <form action="./appointments.php" method="post">
+        <form class="row gx-3 gy-2 align-items-center">
+            <div class="col-md-4">
+                <label for="validationServer01" class="form-label">Last name</label>
+                <input type="text" class="form-control is-valid" id="validationServer01" value="" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <label for="validationServer02" class="form-label">First name</label>
-            <input type="text" class="form-control is-valid" id="validationServer02" value="" required>
-            <div class="valid-feedback">
-                Looks good!
+            <div class="col-md-4">
+                <label for="validationServer02" class="form-label">First name</label>
+                <input type="text" class="form-control is-valid" id="validationServer02" value="" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-4">
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <span class="input-group-text" id="basic-addon2">@russelstreet.medical.com</span>
-        </div>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="basic-addon2">@russelstreet.medical.com</span>
+            </div>
 
-        <div class="col-md-4">
-            <input type="date" class="form-control" placeholder="Date" aria-label="Date" aria-describedby="basic-addon2">
-        </div>
+            <div class="col-md-4">
+                <input type="date" class="form-control" placeholder="Date" aria-label="Date" aria-describedby="basic-addon2">
+            </div>
 
-        <div class="col-md-4">
-            <label for="formFile" class="form-label">Default file input example</label>
-            <input class="form-control" type="file" id="formFile">
-        </div>
+            <div class="col-md-4">
+                <label for="formFile" class="form-label">Default file input example</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
 
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
     </form>
-</form>
+</section>
 
 <style>
     table {

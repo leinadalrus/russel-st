@@ -48,9 +48,8 @@
   else
     require "./login.php";
 
-  if (isset($_POST["email"]))
-    foreach ($CurrentUsers as $user)
-      echo "<h1> Welcome $user </h1>";
+  if (isset($_SESSION["user"]))
+      printf("<h1> Welcome $_SESSION\[\"user\"]\[\"id\"] </h1>");
 
   if (!isset($_POST["password"])) {
     require "./administration.php";

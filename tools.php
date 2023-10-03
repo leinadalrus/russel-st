@@ -9,23 +9,6 @@ $RootDirectory = $_SERVER["DOCUMENT_ROOT"];
 //var $serverDomainName = $_SERVER["SERVER_NAME"];
 $ServerDomainName = $_SERVER["HTTP_HOST"];
 
-$CurrentUsers = update_current_users();
-
-function update_current_users(): int | array
-{
-    $FieldedEmail = $_GET["email"] || $_POST["email"];
-    $CurrentUser = $_SESSION["User"];
-
-    $CurrentUsers = array(0 => array($CurrentUser, $FieldedEmail, date(DATE_W3C)));
-
-    for ($iterator = 0; $iterator < sizeof($CurrentUsers); $iterator++) {
-        $itemized = array($iterator => $CurrentUser, $FieldedEmail, date(DATE_W3C));
-        $CurrentUsers[$iterator] = $itemized;
-    }
-
-    return $CurrentUsers;
-}
-
 function logout_session(): void
 {
     session_unset();
@@ -41,16 +24,16 @@ function logout_session(): void
 
 function verify_username_regex(): string
 {
-    $username = $_SESSION["user"];
+    $id = $_SESSION["user"]["id"];
 
-    if (!ctype_alnum($username) || !preg_match(
-        "/^(?:[A-Z]{2}[0-9]{1,})$/",
-        $username
+    if (!ctype_alnum($id) || !preg_match(
+        "/^(?:[A-Z]{1,1}[a-z]{1,})$/",
+        $id
     )) {
         logout_session();
     }
 
-    return $username;
+    return $id;
 }
 
 function validate_login_credentials(): string
@@ -79,9 +62,13 @@ function validate_remote_usage(): bool
 
 function blowfish_hash_password(): bool
 {
+    if (!preg_match($_SESSION["user"]["password"], "/^(?:[A-Z]{2}[0-9]{1,})$/")) {
+        printf("Error has occurred in user's session. Password has encountered an error [!?]");
+        logout_session();
+    }
     // $CurrentUser = hash_hmac("sha256", $FieldedEmail, $__S3729065_SECRET_FILE__);
-    $hashedPassword = password_hash($_POST["password"], CRYPT_BLOWFISH, ["cost" => 12]);
-    return password_verify($_POST["password"], $hashedPassword);
+    $hashedPassword = password_hash($_SESSION["user"]["password"], CRYPT_BLOWFISH, ["cost" => 12]);
+    return password_verify($_SESSION["user"]["password"], $hashedPassword);
     // Attributions:
     // How can I store my users’ passwords safely?, https://stackoverflow.com/a/1581919.
 }
@@ -121,52 +108,3 @@ function respond_with_prerequisites(): string
 // Attribution(s):
 // Send JSON POST request with PHP,
 // https://stackoverflow.com/a/14501952.
-
-// Authentication
-
-// session_start(["read_and_close" => 1]);
-session_start();
-
-// $__S3729065_REALM__ = "Canopy at Amstel Realm"; // test realm, commented out
-$__S3729065_SECRET_FILE__ = hash_file("sha256", "etc/secret.txt");
-
-// Temporary Cookies
-// $TemporaryCookie = array(0 => array("DS372", "John Doe", date(DATE_W3C)));
-$TemporaryCookies = array(0 => array("Stephen", date(DATE_W3C)));
-
-// foreach ($TemporaryCookie as $key => $value) {
-//     // Consider `explode()` to set one cookie into multiple arrays
-//     // Possibly akin to: explode($TemporaryCookie). May need revision
-//     explode(",", $key);
-
-//     $expirationTime = time() + 7200;
-//     setcookie($key, $value, time() + 7200, $_SESSION["User"], $SERVER["HTTP_HOST"], $TemporaryCookie[$key]);
-
-//     if (!isset($_COOKIE[$key])) {
-//         // delete cookie
-//         setcookie($key, $value, time() - 7200);
-//     }
-
-//     if ($expirationTime == time() + 7200)
-//         setcookie($key, $value, time() - 7200);
-//     // maybe `logout_session()` too?
-// }
-
-session_commit();
-
-header("Set-Cookie: $ServerDomainName=1; path=/; samesite=strict");
-
-output_add_rewrite_var($ServerDomainName, $__S3729065_SECRET_FILE__);
-// TODO(Daud): code ... Pattern Regular Expression Match of email against comparator and validator
-
-// if (!password_verify($AuthorizedPW, $hashedPassword)) {
-//     logout_session();
-// }
-
-// if (!isset($CurrentUser) || !isset($AuthorizedPW)) {
-//     header("WWW-Authenticate: Basic realm="$ServerDomainName"");
-//     header("HTTP/1.0 401 Unauthorized");
-
-//     // custom logout session function from "./tools.php"
-//     logout_session();
-// }

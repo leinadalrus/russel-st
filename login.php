@@ -1,3 +1,78 @@
+<?php
+include "./tools.php";
+// Authentication
+
+// session_start(["read_and_close" => 1]);
+session_start();
+
+// $__S3729065_REALM__ = "Canopy at Amstel Realm"; // test realm, commented out
+$__S3729065_SECRET_FILE__ = hash_file("sha256", "etc/secret.txt");
+
+// Temporary Cookies
+// $TemporaryCookies = array(0 => array("Stephen", date(DATE_W3C)));
+
+// foreach ($TemporaryCookie as $key => $value) {
+//     // Consider `explode()` to set one cookie into multiple arrays
+//     // Possibly akin to: explode($TemporaryCookie). May need revision
+//     explode(",", $key);
+
+//     $expirationTime = time() + 7200;
+//     setcookie($key, $value, time() + 7200, $_SESSION["User"], $SERVER["HTTP_HOST"], $TemporaryCookie[$key]);
+
+//     if (!isset($_COOKIE[$key])) {
+//         // delete cookie
+//         setcookie($key, $value, time() - 7200);
+//     }
+
+//     if ($expirationTime == time() + 7200)
+//         setcookie($key, $value, time() - 7200);
+//     // maybe `logout_session()` too?
+// }
+
+session_commit();
+
+header("Set-Cookie: $ServerDomainName=1; path=/; samesite=strict");
+
+output_add_rewrite_var($ServerDomainName, $__S3729065_SECRET_FILE__);
+// TODO(Daud): code ... Pattern Regular Expression Match of email against comparator and validator
+
+// if (!password_verify($AuthorizedPW, $hashedPassword)) {
+//     logout_session();
+// }
+
+// if (!isset($CurrentUser) || !isset($AuthorizedPW)) {
+//     header("WWW-Authenticate: Basic realm="$ServerDomainName"");
+//     header("HTTP/1.0 401 Unauthorized");
+
+//     // custom logout session function from "./tools.php"
+//     logout_session();
+// }
+
+$fileStreamer = fopen("etc/users.txt", "r");
+$readerCursor = fgetcsv($fileStreamer);
+
+if (!count($_POST) > 0) {
+  logout_session();
+  header($_SERVER["PHP_SELF"]);
+}
+
+foreach ($readerCursor as $row) {
+  $denominator = explode(":", $row);
+
+  if ($_POST['id'] != $denominator[0] && $_POST['password'] != $denominator[1]) {
+    printf("An error occurred somewhere between your delimiter and denominator[!?]");
+    logout_session();
+  }
+
+  $_SESSION['user']['id'] = $denominator[0];
+  $_SESSION['user']['password'] = $denominator[1];
+
+  header($_SERVER["PHP_SELF"]);
+}
+
+fclose($fileStreamer);
+?>
+
 <aside>
   <section class="login-section">
     <form method="get" action="misc/action.php" class="custom-form-container" onsubmit="processFormData()">

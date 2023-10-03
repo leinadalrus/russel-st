@@ -1,3 +1,5 @@
+<?php include "./tool.php"; ?>
+
 <doctype! html>
     <html lang="en">
 
