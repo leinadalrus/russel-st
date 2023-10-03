@@ -54,6 +54,8 @@ $readerCursor = fgetcsv($fileStreamer);
 if (!count($_POST) > 0) {
   logout_session();
   header($_SERVER["PHP_SELF"]);
+} else {
+  update_access_attempts("etc/accessattempts.txt");
 }
 
 foreach ($readerCursor as $row) {
