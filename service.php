@@ -1,4 +1,6 @@
-<?php include_once "./header.php"; ?>
+<?php
+include_once "./header.php";
+?>
 
 <section class="service-section">
   <form class="custom-form-container" method="post" action="<?= $RootDirectory . "/misc/"; ?>action.php" onsubmit="processFormData()">

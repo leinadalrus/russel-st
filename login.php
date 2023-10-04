@@ -1,5 +1,5 @@
 <?php
-include "./tools.php";
+include_once "./tools.php";
 // Authentication
 
 // session_start(["read_and_close" => 1]);
@@ -52,7 +52,7 @@ $fileStreamer = fopen("etc/users.txt", "r");
 $readerCursor = fgetcsv($fileStreamer);
 
 if (!count($_POST) > 0) {
-  logout_session();
+  // logout_session();
   header($_SERVER["PHP_SELF"]);
 } else {
   update_access_attempts("etc/accessattempts.txt");
@@ -62,7 +62,7 @@ foreach ($readerCursor as $row) {
   $denominator = explode(":", $row);
 
   if ($_POST['id'] != $denominator[0] && $_POST['password'] != $denominator[1]) {
-    printf("An error occurred somewhere between your delimiter and denominator[!?]");
+    printf("<h6><i>Sign-in for greater permissions!<i></h6>");
     logout_session();
   }
 

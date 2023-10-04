@@ -19,7 +19,6 @@ function logout_session(): void
 
     // next, return here - administration.html.php :=
     header($_SERVER["PHP_SELF"]);
-    exit;
 }
 
 function verify_username_regex(): string

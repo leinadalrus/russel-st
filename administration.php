@@ -1,12 +1,10 @@
 <?php
-include_once "./appointments.php"; 
-
-
+include_once "./appointments.php";
 ?>
 
 <section>
     <table class="table table-dark table-striped table-bordered border-primary">
-        <thead>
+        <thead class="col-md-1">
             <tr>
                 <?php
                 foreach (fetch_appointments("etc/appointments.txt") as $key => $value) {
@@ -17,7 +15,7 @@ include_once "./appointments.php";
             </tr>
         </thead>
 
-        <tr>
+        <tr class="col-md-1">
             <th scope="row"></th>
             <td> <?= htmlspecialchars($value); ?> </td>
         </tr>
@@ -33,43 +31,41 @@ include_once "./appointments.php";
     </table>
 </section>
 
-<section>
-    <form action="./appointments.php" method="post">
-        <form class="row gx-3 gy-2 align-items-center">
-            <div class="col-md-4">
-                <label for="validationServer01" class="form-label">Last name</label>
-                <input type="text" class="form-control is-valid" id="validationServer01" value="" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+<section class="p-5">
+    <form action="./appointments.php" method="post" class="row p-2 gx-3 gy-2 align-items-center">
+        <div class="col-md-4">
+            <label for="validationServer01" class="form-label">Last name</label>
+            <input type="text" class="form-control is-valid" id="validationServer01" value="" required>
+            <div class="valid-feedback">
+                Looks good!
             </div>
+        </div>
 
-            <div class="col-md-4">
-                <label for="validationServer02" class="form-label">First name</label>
-                <input type="text" class="form-control is-valid" id="validationServer02" value="" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+        <div class="col-md-4">
+            <label for="validationServer02" class="form-label">First name</label>
+            <input type="text" class="form-control is-valid" id="validationServer02" value="" required>
+            <div class="valid-feedback">
+                Looks good!
             </div>
+        </div>
 
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <span class="input-group-text" id="basic-addon2">@russelstreet.medical.com</span>
-            </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <span class="input-group-text" id="basic-addon2">@russelstreet.medical.com</span>
+        </div>
 
-            <div class="col-md-4">
-                <input type="date" class="form-control" placeholder="Date" aria-label="Date" aria-describedby="basic-addon2">
-            </div>
+        <div class="col-md-4">
+            <input type="date" class="form-control" placeholder="Date" aria-label="Date" aria-describedby="basic-addon2">
+        </div>
 
-            <div class="col-md-4">
-                <label for="formFile" class="form-label">Default file input example</label>
-                <input class="form-control" type="file" id="formFile">
-            </div>
+        <div class="col-md-4">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input class="form-control" type="file" id="formFile">
+        </div>
 
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
     </form>
 </section>
 

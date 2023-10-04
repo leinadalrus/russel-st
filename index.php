@@ -1,4 +1,6 @@
-<?php require_once "./header.php"; ?>
+<?php
+include_once "./header.php";
+?>
 
 <script>
   $(function() {
@@ -15,27 +17,27 @@
 <section>
   <article class="portrait-image-carousel">
     <div>
-      <img src="https://images.unsplash.com/photo-1688590361364-2d153dac2a15?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIwNTl8&ixlib=rb-4.0.3&q=85" alt="" />
+      <img src="https://images.unsplash.com/photo-1688590361364-2d153dac2a15?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIwNTl8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
     </div>
 
     <div>
-      <img src="https://images.unsplash.com/photo-1595878715977-2e8f8df18ea8?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="" />
+      <img src="https://images.unsplash.com/photo-1595878715977-2e8f8df18ea8?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
     </div>
 
     <div>
-      <img src="https://images.unsplash.com/photo-1689500216081-e12c2580e0df?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIyNzZ8&ixlib=rb-4.0.3&q=85" alt="" />
+      <img src="https://images.unsplash.com/photo-1689500216081-e12c2580e0df?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIyNzZ8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
     </div>
 
     <div>
-      <img src="https://images.unsplash.com/photo-1483791424735-e9ad0209eea2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="" />
+      <img src="https://images.unsplash.com/photo-1483791424735-e9ad0209eea2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
     </div>
 
     <div>
-      <img src="https://images.unsplash.com/photo-1597116635010-8b65f0dce76c?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="" />
+      <img src="https://images.unsplash.com/photo-1597116635010-8b65f0dce76c?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
     </div>
 
     <div>
-      <img src="https://images.unsplash.com/photo-1563407844-11ca6f74f09a?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="" />
+      <img src="https://images.unsplash.com/photo-1563407844-11ca6f74f09a?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
     </div>
   </article>
 </section>
@@ -46,10 +48,10 @@
   if (isset($_GET["signage"]))
     validate_remote_usage();
   else
-    require "./login.php";
+    require_once "./login.php";
 
   if (isset($_SESSION["user"]))
-      printf("<h1> Welcome $_SESSION\[\"user\"]\[\"id\"] </h1>");
+    printf("<h1> Welcome %s </h1>", $_SESSION["user"]["id"]);
 
   if (!isset($_POST["password"])) {
     require "./administration.php";

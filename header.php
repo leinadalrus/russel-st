@@ -1,4 +1,6 @@
-<?php include "./tool.php"; ?>
+<?php
+require_once "./tools.php";
+?>
 
 <doctype! html>
     <html lang="en">
