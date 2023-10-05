@@ -1,36 +1,62 @@
 <?php
-
-declare(strict_types=1);
-
-require_once './tools.php';
-
-include_once './header.php';
+include_once "./header.php";
 ?>
 
-<link href="https://fonts.googleapis.com/css?family=Karla:400" rel="stylesheet" type="text/css">
+<script>
+  $(function() {
+    $(".portrait-image-carousel").slick({
+      infinite: true,
+      slidesToShow: 1,
+      slidesToScroll: 5,
+      centerMode: true,
+      adaptiveHeight: true
+    })
+  })
+</script>
 
-<div class="container">
-  <div class="content">
-    <div class="title" title="Laragon">Laragon</div>
-
-    <div class="info"><br />
-      <?php print($_SERVER['SERVER_SOFTWARE']); ?><br />
-      PHP version: <?php print phpversion(); ?> <span><a title="phpinfo()" href="/?q=info">info</a></span><br />
-      Document Root: <?php print($_SERVER['DOCUMENT_ROOT']); ?><br />
-
+<section>
+  <article class="portrait-image-carousel">
+    <div>
+      <img src="https://images.unsplash.com/photo-1688590361364-2d153dac2a15?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIwNTl8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
     </div>
-  </div>
-</div>
 
-<section id="hero-image-carousel">
-  <img src="https://images.unsplash.com/photo-1688590361364-2d153dac2a15?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIwNTl8&ixlib=rb-4.0.3&q=85" />
+    <div>
+      <img src="https://images.unsplash.com/photo-1595878715977-2e8f8df18ea8?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
+    </div>
 
-  <img src="https://images.unsplash.com/photo-1689275851672-32a8c8d8588e?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIyMTh8&ixlib=rb-4.0.3&q=85" id="hero-image-middle" />
+    <div>
+      <img src="https://images.unsplash.com/photo-1689500216081-e12c2580e0df?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIyNzZ8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
+    </div>
 
-  <img src="https://images.unsplash.com/photo-1689500216081-e12c2580e0df?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTA3ODIyNzZ8&ixlib=rb-4.0.3&q=85" />
+    <div>
+      <img src="https://images.unsplash.com/photo-1483791424735-e9ad0209eea2?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
+    </div>
+
+    <div>
+      <img src="https://images.unsplash.com/photo-1597116635010-8b65f0dce76c?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
+    </div>
+
+    <div>
+      <img src="https://images.unsplash.com/photo-1563407844-11ca6f74f09a?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2OTYyOTI3ODd8&ixlib=rb-4.0.3&q=85" alt="Royalty-free Stock image of a blue shaded subject" />
+    </div>
+  </article>
 </section>
 
 <main class="main-container">
+
+  <?php
+  if (isset($_GET["signage"]))
+    validate_remote_usage();
+  else
+    require_once "./login.php";
+
+  if (isset($_SESSION["user"]["id"]))
+    printf("<h1> Welcome %s </h1>", $_SESSION["user"]["id"]);
+
+  if (isset($_POST["password"])) {
+    require "./administration.php";
+  }
+  ?>
 
   <h2>
     <b>About Us</b>
@@ -41,7 +67,7 @@ include_once './header.php';
     <p>
       Russel Street Medical opened in 2020,
       <br />
-      and is located in Melbourne's CBD at:
+      and is located in Melbourne"s CBD at:
       <br />
     <section id="about-us-details">
       <i>
@@ -127,7 +153,7 @@ include_once './header.php';
       <tr>
         <td>
 
-          Over his training and practice, Stephen worked in internal medicine at the Royal Children's Hospital
+          Over his training and practice, Stephen worked in internal medicine at the Royal Children"s Hospital
           Melbourne before transitioning to General Practice.
 
         </td>
@@ -160,5 +186,5 @@ include_once './header.php';
 </div>
 
 <?php
-include_once './footer.php';
+require_once "./footer.php";
 ?>

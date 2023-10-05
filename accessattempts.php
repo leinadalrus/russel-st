@@ -1,27 +1,21 @@
 <?php
-
-final class AccessAttempt
+function update_access_attempts(string $filepath): void
 {
+    $filepath = 'etc/accessattempts.txt';
+    $username = verify_username_regex();
+    $accessAttempts = array();
 
-    private $accessAttempts = array(0 => array(0));
+    $email = $_GET['email'];
+    $accessAttempted = array($username => array(0, $email, date(DATE_W3C)),);
 
-    public function UpdateAccessAttempts(string $filepath)
-    {
-        $filepath = $_SERVER['DOCUMENT_ROOT'] . '/etc/' . 'accessattempts.txt';
-        $username = verify_username_regex();
-
-        $email = $_GET['email'] || $_POST['email'];
-        $accessAttempted = array($username => array(0, $email, date(DATE_W3C)),);
-
-        foreach ($this->accessAttempts as $attempt) {
-            $this->accessAttempts[$attempt] = $accessAttempted;
-        }
-
-        fputcsv($filepath, $accessAttempted);
+    foreach ($accessAttempts as $attempt) {
+        $accessAttempts[$attempt] = $accessAttempted;
     }
 
-    public function RetrieveAccessAttempts()
-    {
-        return $this->accessAttempts;
-    }
+    fputcsv($filepath, $accessAttempted);
+}
+
+function retrieve_access_attempts(string $filepath): array | false
+{
+    return fgetcsv($filepath);
 }

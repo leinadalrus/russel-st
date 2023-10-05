@@ -1,13 +1,14 @@
 <?php
-
-$err = '';
-
 if (!$_GET || !$_POST)
   printf('encountered an action method error');
 
-if ($_GET || $_POST)
+if ($_GET || $_POST) {
   if (empty($_GET || $_POST))
     printf('Server has encountered an empty action method error [!?]');
+
+  if (count($_GET) > 0 || count($_POST) > 0)
+    printf('Server has encountered an empty action method error [!?]');
+}
 
 $getFormData = array(
   'http' => array(
