@@ -1,83 +1,94 @@
 <?php
 include_once "./tools.php";
+include_once "./accessattempts.php";
+
 // Authentication
 
-// session_start(["read_and_close" => 1]);
-session_start();
+function login_session(): bool
+{
+  $RootDirectory = $_SERVER["DOCUMENT_ROOT"];
+  //var $serverDomainName = $_SERVER["SERVER_NAME"];
+  $ServerDomainName = $_SERVER["HTTP_HOST"];
 
-// $__S3729065_REALM__ = "Canopy at Amstel Realm"; // test realm, commented out
-$__S3729065_SECRET_FILE__ = hash_file("sha256", "etc/secret.txt");
+  // session_start(["read_and_close" => 1]);
+  session_start();
 
-// Temporary Cookies
-// $TemporaryCookies = array(0 => array("Stephen", date(DATE_W3C)));
+  // $__S3729065_REALM__ = "Canopy at Amstel Realm"; // test realm, commented out
+  $__S3729065_SECRET_FILE__ = hash_file("sha256", "etc/secret.txt");
 
-// foreach ($TemporaryCookie as $key => $value) {
-//     // Consider `explode()` to set one cookie into multiple arrays
-//     // Possibly akin to: explode($TemporaryCookie). May need revision
-//     explode(",", $key);
+  // Temporary Cookies
+  // $TemporaryCookies = array(0 => array("Stephen", date(DATE_W3C)));
 
-//     $expirationTime = time() + 7200;
-//     setcookie($key, $value, time() + 7200, $_SESSION["User"], $SERVER["HTTP_HOST"], $TemporaryCookie[$key]);
+  // foreach ($TemporaryCookie as $key => $value) {
+  //     // Consider `explode()` to set one cookie into multiple arrays
+  //     // Possibly akin to: explode($TemporaryCookie). May need revision
+  //     explode(",", $key);
 
-//     if (!isset($_COOKIE[$key])) {
-//         // delete cookie
-//         setcookie($key, $value, time() - 7200);
-//     }
+  //     $expirationTime = time() + 7200;
+  //     setcookie($key, $value, time() + 7200, $_SESSION["User"], $SERVER["HTTP_HOST"], $TemporaryCookie[$key]);
 
-//     if ($expirationTime == time() + 7200)
-//         setcookie($key, $value, time() - 7200);
-//     // maybe `logout_session()` too?
-// }
+  //     if (!isset($_COOKIE[$key])) {
+  //         // delete cookie
+  //         setcookie($key, $value, time() - 7200);
+  //     }
 
-session_commit();
+  //     if ($expirationTime == time() + 7200)
+  //         setcookie($key, $value, time() - 7200);
+  //     // maybe `logout_session()` too?
+  // } 
 
-header("Set-Cookie: $ServerDomainName=1; path=/; samesite=strict");
+  session_commit();
+  
+  header("Set-Cookie: $ServerDomainName=1; path=/; samesite=strict");
+  output_add_rewrite_var($ServerDomainName, $__S3729065_SECRET_FILE__);
+  // TODO(Daud): code ... Pattern Regular Expression Match of email against comparator and validator
 
-output_add_rewrite_var($ServerDomainName, $__S3729065_SECRET_FILE__);
-// TODO(Daud): code ... Pattern Regular Expression Match of email against comparator and validator
+  // if (!password_verify($AuthorizedPW, $hashedPassword)) {
+  //     logout_session();
+  // }
 
-// if (!password_verify($AuthorizedPW, $hashedPassword)) {
-//     logout_session();
-// }
+  // if (!isset($CurrentUser) || !isset($AuthorizedPW)) {
+  //     header("WWW-Authenticate: Basic realm="$ServerDomainName"");
+  //     header("HTTP/1.0 401 Unauthorized");
 
-// if (!isset($CurrentUser) || !isset($AuthorizedPW)) {
-//     header("WWW-Authenticate: Basic realm="$ServerDomainName"");
-//     header("HTTP/1.0 401 Unauthorized");
+  //     // custom logout session function from "./tools.php"
+  //     logout_session();
+  // }
 
-//     // custom logout session function from "./tools.php"
-//     logout_session();
-// }
+  $fileStreamer = fopen("etc/users.txt", "r");
+  $readerCursor = fgetcsv($fileStreamer);
 
-$fileStreamer = fopen("etc/users.txt", "r");
-$readerCursor = fgetcsv($fileStreamer);
-
-if (!count($_POST) > 0) {
-  // logout_session();
-  header($_SERVER["PHP_SELF"]);
-} else {
-  update_access_attempts("etc/accessattempts.txt");
-}
-
-foreach ($readerCursor as $row) {
-  $denominator = explode(":", $row);
-
-  if ($_POST['id'] != $denominator[0] && $_POST['password'] != $denominator[1]) {
-    printf("<h6><i>Sign-in for greater permissions!<i></h6>");
-    logout_session();
+  if (!count($_POST) > 0) {
+    // logout_session();
+    header($_SERVER["PHP_SELF"]);
+  } else {
+    update_access_attempts("etc/accessattempts.txt");
   }
 
-  $_SESSION['user']['id'] = $denominator[0];
-  $_SESSION['user']['password'] = $denominator[1];
+  foreach ($readerCursor as $row) {
+    $denominator = explode(":", $row);
 
-  header($_SERVER["PHP_SELF"]);
+    if ($_POST['id'] != $denominator[0] && $_POST['password'] != $denominator[1]) {
+      printf("<h6><i>Sign-in for greater permissions!<i></h6>");
+      logout_session();
+    }
+
+    $_SESSION['user']['id'] = $denominator[0];
+    $_SESSION['user']['password'] = $denominator[1];
+
+    update_access_attempts("etc/accessattempts.txt");
+
+    header($_SERVER["PHP_SELF"]);
+  }
+
+  fclose($fileStreamer);
+  return count($_SESSION) > 0;
 }
-
-fclose($fileStreamer);
 ?>
 
 <aside>
   <section class="login-section">
-    <form method="get" action="misc/action.php" class="custom-form-container" onsubmit="processFormData()">
+    <form method="post" action="./index.php" class="custom-form-container" onsubmit="processFormData()">
       <input type="email" id="email-field-style" name="email" onchange="validateEmailID()" />
       <input type="password" id="password-field-style" name="password" />
 

@@ -5,11 +5,18 @@ include_once "./header.php";
 <script>
   $(function() {
     $(".portrait-image-carousel").slick({
-      infinite: true,
       slidesToShow: 1,
       slidesToScroll: 5,
+      autoplay: true,
+      autoplaySpeed: 2048,
+      infinite: true,
       centerMode: true,
-      adaptiveHeight: true
+      adaptiveHeight: true,
+      pauseOnFocus: false,
+      pauseOnHover: false,
+      pauseOnDotsHover: false,
+      fade: true,
+      cssEase: "linear"
     })
   })
 </script>
@@ -50,10 +57,10 @@ include_once "./header.php";
   else
     require_once "./login.php";
 
-  if (isset($_SESSION["user"]))
+  if (isset($_SESSION["user"]["id"]))
     printf("<h1> Welcome %s </h1>", $_SESSION["user"]["id"]);
 
-  if (!isset($_POST["password"])) {
+  if (isset($_POST["password"])) {
     require "./administration.php";
   }
   ?>

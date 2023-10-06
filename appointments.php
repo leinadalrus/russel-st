@@ -56,16 +56,23 @@ function fetch_appointments(string $filepath): array | string
 
 function update_appointments(): void
 {
+    $lastname = $_POST["lastname"];
+    $firstname = $_POST["firstname"];
+    $username = $_POST["id"];
+    $datetime = $_POST["datetime"];
+    $onEvent = $_POST["appoint"];
+
     $fileStreamer = fopen("etc/appointments.txt", "r+"); // make sure the text file exists
     // "r+" let"s you read and overwrite strings
     flock($fileStreamer, LOCK_EX);
 
     $appointmentsArr = array(array(fread($fileStreamer, filesize("etc/appointments.txt"))));
 
-    foreach ($appointmentsArr as $userDatums) {
-        $userDatums = array($_SESSION["appointment"]["id"], $_SESSION["appointment"]["firstname"], $_SESSION["appointment"]["lastname"], $_SESSION["appointment"]["datetime"] = date(DATE_W3C));
-        fputcsv($fileStreamer, $userDatums);
-    }
+    if (!feof($fileStreamer))
+        foreach ($appointmentsArr as $userDatums) {
+            $userDatums = array($username, $lastname, $firstname, date(DATE_W3C));
+            fputcsv($fileStreamer, $userDatums);
+        }
 
     flock($fileStreamer, LOCK_UN);
     fclose($fileStreamer);
