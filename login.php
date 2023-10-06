@@ -1,5 +1,6 @@
 <?php
 include_once "./tools.php";
+include_once "./accessattempts.php";
 
 // Authentication
 
@@ -74,6 +75,8 @@ function login_session(): bool
 
     $_SESSION['user']['id'] = $denominator[0];
     $_SESSION['user']['password'] = $denominator[1];
+
+    update_access_attempts("etc/accessattempts.txt");
 
     header($_SERVER["PHP_SELF"]);
   }

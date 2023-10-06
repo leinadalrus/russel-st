@@ -32,41 +32,40 @@ include_once "./appointments.php";
 </section>
 
 <section class="p-5">
-    <form action="./appointments.php" method="post" class="row p-2 gx-3 gy-2 align-items-center">
+    <form action="" method="post" class="row p-2 gx-3 gy-2 align-items-center">
         <div class="col-md-4">
-            <label for="validationServer01" class="form-label">Last name</label>
-            <input type="text" class="form-control is-valid" id="validationServer01" value="" required>
+            <label for="lastname" class="form-label">Last name</label>
+            <input type="text" class="form-control is-valid" id="lastname" name="lastname" value="" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
         </div>
 
         <div class="col-md-4">
-            <label for="validationServer02" class="form-label">First name</label>
-            <input type="text" class="form-control is-valid" id="validationServer02" value="" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" name="id">
             <span class="input-group-text" id="basic-addon2">@russelstreet.medical.com</span>
         </div>
 
         <div class="col-md-4">
-            <input type="date" class="form-control" placeholder="Date" aria-label="Date" aria-describedby="basic-addon2">
+            <input type="date" class="form-control" placeholder="Date" aria-label="Date" aria-describedby="basic-addon2" name="datetime">
         </div>
 
         <div class="col-md-4">
             <label for="formFile" class="form-label">Default file input example</label>
-            <input class="form-control" type="file" id="formFile">
+            <input class="form-control" type="file" id="formFile" name="formfile">
         </div>
 
         <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" name="appoint">Submit</button>
         </div>
     </form>
+
+    <?php
+    if ($_POST["appoint"])
+        update_appointments();
+    else
+        printf("<i>An error has occurred with the appointment submission</i>");
+    ?>
 </section>
 
 <style>

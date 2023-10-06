@@ -5,11 +5,18 @@ include_once "./header.php";
 <script>
   $(function() {
     $(".portrait-image-carousel").slick({
-      infinite: true,
       slidesToShow: 1,
       slidesToScroll: 5,
+      autoplay: true,
+      autoplaySpeed: 2048,
+      infinite: true,
       centerMode: true,
-      adaptiveHeight: true
+      adaptiveHeight: true,
+      pauseOnFocus: false,
+      pauseOnHover: false,
+      pauseOnDotsHover: false,
+      fade: true,
+      cssEase: "linear"
     })
   })
 </script>
