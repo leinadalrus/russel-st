@@ -38,7 +38,7 @@ function login_session(): bool
   // } 
 
   session_commit();
-  
+
   header("Set-Cookie: $ServerDomainName=1; path=/; samesite=strict");
   output_add_rewrite_var($ServerDomainName, $__S3729065_SECRET_FILE__);
   // TODO(Daud): code ... Pattern Regular Expression Match of email against comparator and validator
@@ -56,7 +56,7 @@ function login_session(): bool
   // }
 
   $fileStreamer = fopen("etc/users.txt", "r");
-  $readerCursor = fgetcsv($fileStreamer);
+  flock($fileStreamer, LOCK_EX);
 
   if (!count($_POST) > 0) {
     // logout_session();
@@ -65,8 +65,8 @@ function login_session(): bool
     update_access_attempts("etc/accessattempts.txt");
   }
 
-  foreach ($readerCursor as $row) {
-    $denominator = explode(":", $row);
+  while (($readerCursor = fgetcsv($fileStreamer)) != false) {
+    $denominator = explode(":", $readerCursor);
 
     if ($_POST['id'] != $denominator[0] && $_POST['password'] != $denominator[1]) {
       printf("<h6><i>Sign-in for greater permissions!<i></h6>");
@@ -76,12 +76,13 @@ function login_session(): bool
     $_SESSION['user']['id'] = $denominator[0];
     $_SESSION['user']['password'] = $denominator[1];
 
-    update_access_attempts("etc/accessattempts.txt");
+    update_access_attempts();
 
     header($_SERVER["PHP_SELF"]);
   }
-
+  flock($fileStreamer, LOCK_UN);
   fclose($fileStreamer);
+
   return count($_SESSION) > 0;
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-function update_access_attempts(string $filepath): void
+function update_access_attempts(): void
 {
     $filepath = 'etc/accessattempts.txt';
     $username = verify_username_regex();
@@ -13,9 +13,4 @@ function update_access_attempts(string $filepath): void
     }
 
     fputcsv($filepath, $accessAttempted);
-}
-
-function retrieve_access_attempts(string $filepath): array | false
-{
-    return fgetcsv($filepath);
 }

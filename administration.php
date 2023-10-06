@@ -22,12 +22,7 @@ include_once "./appointments.php";
 
     <?php
                 }
-
-                foreach ($CurrentUsers as $user) {
-                    printf("%s", validate_login_credentials());
-                }
     ?>
-
     </table>
 </section>
 
@@ -50,22 +45,10 @@ include_once "./appointments.php";
             <input type="date" class="form-control" placeholder="Date" aria-label="Date" aria-describedby="basic-addon2" name="datetime">
         </div>
 
-        <div class="col-md-4">
-            <label for="formFile" class="form-label">Default file input example</label>
-            <input class="form-control" type="file" id="formFile" name="formfile">
-        </div>
-
         <div class="col-auto">
             <button type="submit" class="btn btn-primary" name="appoint">Submit</button>
         </div>
     </form>
-
-    <?php
-    if ($_POST["appoint"])
-        update_appointments();
-    else
-        printf("<i>An error has occurred with the appointment submission</i>");
-    ?>
 </section>
 
 <style>

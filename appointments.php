@@ -2,38 +2,6 @@
 
 require_once "./tools.php";
 
-function stream_appointments(string $filepath): array | false
-{
-    // ini_set("auto_detect_line_endings", true); // #ifndef HEADER_H // equivalent to C/C++ header include guards
-    // NOTE: "auto_detect_line_endings" is deprecated
-
-    $rows = 1;
-    $columns = 1;
-
-    if (($fileStreamer = fopen("etc/appointments.txt", "r")) !== false) {
-        flock($fileStreamer, LOCK_EX);
-
-        while (($datum = fgetcsv($fileStreamer)) !== false)
-            for (
-                $rows = count($datum);
-                $rows++;
-            ) {
-                for ($columns = 0; $columns < $rows; $columns++) {
-                    echo htmlspecialchars($datum[$columns]);
-                    return $datum;
-                }
-
-                echo htmlspecialchars($datum[$rows]);
-            }
-
-        flock($fileStreamer, LOCK_UN);
-        fclose($fileStreamer);
-    }
-
-    // ini_set("auto_detect_line_endings", false); // #endif // HEADER_H 
-    // NOTE: "auto_detect_line_endings" is deprecated
-}
-
 function fetch_appointments(string $filepath): array | string
 {
     $contents = array();
@@ -56,23 +24,23 @@ function fetch_appointments(string $filepath): array | string
 
 function update_appointments(): void
 {
+    if ($_POST["appoint"] == "appoint")
+        update_appointments();
+    else
+        printf("<i>An error has occurred with the appointment submission</i>");
+
     $lastname = $_POST["lastname"];
     $firstname = $_POST["firstname"];
     $username = $_POST["id"];
-    $datetime = $_POST["datetime"];
-    $onEvent = $_POST["appoint"];
 
     $fileStreamer = fopen("etc/appointments.txt", "r+"); // make sure the text file exists
     // "r+" let"s you read and overwrite strings
     flock($fileStreamer, LOCK_EX);
 
-    $appointmentsArr = array(array(fread($fileStreamer, filesize("etc/appointments.txt"))));
-
-    if (!feof($fileStreamer))
-        foreach ($appointmentsArr as $userDatums) {
-            $userDatums = array($username, $lastname, $firstname, date(DATE_W3C));
-            fputcsv($fileStreamer, $userDatums);
-        }
+    while (!feof($fileStreamer)) {
+        $user_data = array($username, $lastname, $firstname, date(DATE_W3C));
+        fputcsv($fileStreamer, $user_data, ",");
+    }
 
     flock($fileStreamer, LOCK_UN);
     fclose($fileStreamer);
@@ -81,15 +49,13 @@ function update_appointments(): void
 $fileStreamer = fopen("etc/appointments.txt", "r+");
 flock($fileStreamer, LOCK_EX);
 
-$readerCursor = fgetcsv($fileStreamer);
-
 if (!count($_POST) > 0) {
     logout_session();
     header($_SERVER["PHP_SELF"]);
 }
 
-foreach ($readerCursor as $row) {
-    $denominator = explode(":", $row);
+while (($readerCursor = fgetcsv($fileStreamer)) != false) {
+    $denominator = explode(":", $readerCursor);
 
     if ($_SESSION["user"]["id"] != $denominator[0] && $_SESSION["user"]["password"] != $denominator[1]) {
         printf("<h6><i>An error occurred somewhere between your delimiter and denominator[!?]</i></h6>");

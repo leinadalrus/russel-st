@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-error_reporting(E_ERROR | E_PARSE);
+// error_reporting(E_ERROR | E_PARSE);
 date_default_timezone_set("UTC");
 
 $RootDirectory = $_SERVER["DOCUMENT_ROOT"];
